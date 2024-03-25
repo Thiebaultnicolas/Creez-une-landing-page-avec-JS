@@ -1,9 +1,10 @@
-// DOM Elements
+// Sélection des éléments du DOM
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const modalClose = document.querySelector('.close')
 
+// Fonction pour activer/désactiver la classe responsive du menu de navigation
 function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
@@ -41,10 +42,10 @@ const showConfirmationModal = () => {
   closeModalOnClickOutside(confirmationModal);
 };
 
-// launch modal event
+// Écouteur d'événement pour le clic sur le bouton d'inscription
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
-// launch modal form
+// Fonction pour afficher la modale de formulaire
 function launchModal() {
   modalbg.style.display = "block";
 }

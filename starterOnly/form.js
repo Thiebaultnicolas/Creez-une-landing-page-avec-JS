@@ -1,5 +1,7 @@
+// Sélectionne le formulaire dans le DOM
 const form = document.querySelector("#form");
 
+// Fonction pour afficher les messages d'erreur
 const showError = (valid, message, errorFieldId) => {
   const errorField = document.querySelector(errorFieldId)
   if (valid) {
@@ -9,6 +11,7 @@ const showError = (valid, message, errorFieldId) => {
   errorField.innerHTML = message
 };
 
+// Fonction pour valider le champ du prénom
 const checkName = (field) => {
   if (field.value.trim() === "") {
     return { valid: false, message: "Le champ ne doit pas être vide" };
@@ -32,6 +35,7 @@ const checkName = (field) => {
   };
 };
 
+// Fonction pour valider le champ email
 const checkEmail = (field) => {
   if (field.value.trim() === "") {
     return { valid: false, message: "Le champ ne doit pas être vide" };
@@ -45,6 +49,7 @@ const checkEmail = (field) => {
   return { valid: true };
 };
 
+// Fonction pour valider le champ date de naissance
 const checkBirthdate = (field) => {
   const dateValue = new Date(field.value);
 
@@ -62,6 +67,7 @@ const checkBirthdate = (field) => {
   return { valid: true };
 };
 
+// Fonction pour valider le champ de la question
 const checkQuestion = (field) => {
   const answer = field.value.trim();
 
@@ -76,6 +82,7 @@ const checkQuestion = (field) => {
   return { valid: true };
 };
 
+// Fonction pour valider la sélection d'un tournoi
 const checkTournament = (radioGroup) => {
   let valid = false;
   radioGroup.forEach((radio) => {
@@ -88,6 +95,7 @@ const checkTournament = (radioGroup) => {
     : { valid: false, message: "Veuillez sélectionner une des villes" };
 };
 
+// Fonction pour valider l'acceptation des conditions
 const checkConditions = () => {
   const conditionCheckbox = document.getElementById("checkbox1");
   const conditionLabel = document.querySelector(
@@ -104,6 +112,7 @@ const checkConditions = () => {
   };
 };
 
+// Écouteur d'événement pour la soumission du formulaire
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
