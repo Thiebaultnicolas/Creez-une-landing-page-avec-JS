@@ -3,12 +3,18 @@ const form = document.querySelector("#form");
 
 // Fonction pour afficher les messages d'erreur
 const showError = (valid, message, errorFieldId) => {
-  const errorField = document.querySelector(errorFieldId)
+  // Sélectionner l'élément du DOM où afficher le message d'erreur en utilisant son ID
+  const errorField = document.querySelector(errorFieldId);
+
+  // Vérifier si la validation a réussi (valid === true)
   if (valid) {
-    errorField.innerHTML = ''
-    return;
+    // Si la validation a réussi, effacer tout contenu précédent dans le champ d'erreur
+    errorField.innerHTML = '';
+    return; // Sortir de la fonction car il n'y a pas d'erreur à afficher
   }
-  errorField.innerHTML = message
+
+  // Si la validation a échoué (valid === false), afficher le message d'erreur dans le champ approprié
+  errorField.innerHTML = message;
 };
 
 // Fonction pour valider le champ du prénom
@@ -51,19 +57,28 @@ const checkEmail = (field) => {
 
 // Fonction pour valider le champ date de naissance
 const checkBirthdate = (field) => {
+  // Convertir la valeur du champ en objet Date
   const dateValue = new Date(field.value);
 
+  // Vérifier si le champ est vide
   if (field.value.trim() === "") {
+    // Si le champ est vide, renvoyer un objet indiquant que la validation a échoué
+    // avec un message approprié
     return { valid: false, message: "Veuillez indiquer votre Date" };
   }
 
+  // Vérifier si la valeur convertie en Date est invalide (NaN) ou si l'année est inférieure à 1914
   if (isNaN(dateValue.getTime()) || dateValue.getFullYear() < 1914) {
+    // Si la date n'est pas valide ou si l'année est antérieure à 1914,
+    // renvoyer un objet indiquant que la validation a échoué
+    // avec un message approprié
     return {
       valid: false,
       message: "Veuillez saisir une date correcte ( minimum 1914)",
     };
   }
 
+  // Si la validation réussit, renvoyer un objet indiquant que la validation a réussi
   return { valid: true };
 };
 
@@ -147,5 +162,6 @@ form.addEventListener("submit", (event) => {
     isConditionsAccepted.valid
   ) {
     showConfirmationModal();
+    form.reset(); // Réinitialiser les champs du formulaire après soumission réussie
   }
 });

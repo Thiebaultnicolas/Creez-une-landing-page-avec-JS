@@ -50,10 +50,14 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
+// Fonction pour fermer la modale
 function closeModal() {
-  modalbg.style.display = 'none'
+  // Modification du style de modalbg pour masquer la modale en lui attribuant la valeur 'none'
+  modalbg.style.display = 'none';
 }
 
+// Écouteur d'événement pour le clic sur le bouton de fermeture de la modale
 modalClose.addEventListener('click', () => {
+  // Lorsque l'utilisateur clique sur le bouton de fermeture, appelle la fonction closeModal() pour masquer la modale
   closeModal();
 })
