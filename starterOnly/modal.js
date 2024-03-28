@@ -2,7 +2,7 @@
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-const modalClose = document.querySelector('.close')
+const modalClose = document.querySelector('.close ')
 
 // Fonction pour activer/désactiver la classe responsive du menu de navigation
 function editNav() {
@@ -14,14 +14,6 @@ function editNav() {
   }
 }
 
-// Fonction pour fermer la modale en cliquant en dehors d'elle
-const closeModalOnClickOutside = (modal) => {
-  window.addEventListener("click", (event) => {
-    if (event.target === modal) {
-      modal.remove();
-    }
-  });
-};
 
 // Fonction pour afficher une modale de confirmation
 const showConfirmationModal = () => {
@@ -33,14 +25,29 @@ const showConfirmationModal = () => {
   confirmationModal.classList.add("confirmation-modal");
   confirmationModal.innerHTML = `
     <div class="modal-content">
-      <p>Super ! Merci pour ton inscription !</p>
+      <span class="close2">&times;</span> <!-- Croix pour fermer la modale -->
+      <p>Merci pour<br><br/>votre inscription !</p>
+      <button class="button-close">Fermer</button> <!-- Bouton "Fermer" -->
     </div>
   `;
   document.body.appendChild(confirmationModal);
 
-  // Appeler la fonction pour fermer la modale en cliquant en dehors d'elle
-  closeModalOnClickOutside(confirmationModal);
+  // Sélectionner le bouton de fermeture de la modale
+  const closeButton = confirmationModal.querySelector('.close2');
+
+  // Ajouter un écouteur d'événement au bouton de fermeture
+  closeButton.addEventListener('click', () => {
+    closeModal(); // Appeler la fonction closeModal() lorsque le bouton de fermeture est cliqué
+  });
 };
+
+// Fonction pour fermer la modale
+function closeModal() {
+  const confirmationModal = document.querySelector('.confirmation-modal');
+  if (confirmationModal) {
+    confirmationModal.remove(); // Supprimer la modale de confirmation du DOM
+  }
+}
 
 // Écouteur d'événement pour le clic sur le bouton d'inscription
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
