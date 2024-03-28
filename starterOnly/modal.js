@@ -18,7 +18,7 @@ function editNav() {
 // Fonction pour afficher une modale de confirmation
 const showConfirmationModal = () => {
   // Fermer la modale du formulaire
-  modalbg.style.display = "none";
+  closeModal();
 
   // Créer une nouvelle modale de confirmation
   const confirmationModal = document.createElement("div");
@@ -34,20 +34,27 @@ const showConfirmationModal = () => {
 
   // Sélectionner le bouton de fermeture de la modale
   const closeButton = confirmationModal.querySelector('.close2');
+  const closeButtonInner = confirmationModal.querySelector('.button-close');
 
-  // Ajouter un écouteur d'événement au bouton de fermeture
+  // Ajouter un écouteur d'événement au bouton de fermeture et au bouton "Fermer"
   closeButton.addEventListener('click', () => {
-    closeModal(); // Appeler la fonction closeModal() lorsque le bouton de fermeture est cliqué
+    closeConfirmationModal(); // Appeler la fonction closeConfirmationModal() lorsque le bouton de fermeture est cliqué
+  });
+
+  closeButtonInner.addEventListener('click', () => {
+    closeConfirmationModal(); // Appeler la fonction closeConfirmationModal() lorsque le bouton "Fermer" est cliqué
   });
 };
 
-// Fonction pour fermer la modale
-function closeModal() {
+// Fonction pour fermer la modal de confirmation
+function closeConfirmationModal() {
   const confirmationModal = document.querySelector('.confirmation-modal');
   if (confirmationModal) {
-    confirmationModal.remove(); // Supprimer la modale de confirmation du DOM
+    confirmationModal.remove(); // Supprimer la modal de confirmation du DOM
   }
 }
+
+
 
 // Écouteur d'événement pour le clic sur le bouton d'inscription
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
